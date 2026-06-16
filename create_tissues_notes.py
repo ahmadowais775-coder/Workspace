@@ -57,15 +57,31 @@ def create_styled_table(doc, headers, rows, header_color="1B4F72"):
     table.alignment = WD_TABLE_ALIGNMENT.CENTER
     add_table_borders(table)
 
+    # Set compact cell margins for the entire table
+    tbl = table._tbl
+    tblPr = tbl.tblPr if tbl.tblPr is not None else parse_xml(f'<w:tblPr {nsdecls("w")}/>')
+    cellMargin = parse_xml(
+        f'<w:tblCellMar {nsdecls("w")}>'
+        f'<w:top w:w="20" w:type="dxa"/>'
+        f'<w:left w:w="40" w:type="dxa"/>'
+        f'<w:bottom w:w="20" w:type="dxa"/>'
+        f'<w:right w:w="40" w:type="dxa"/>'
+        f'</w:tblCellMar>'
+    )
+    tblPr.append(cellMargin)
+
     # Header row
     for i, header in enumerate(headers):
         cell = table.rows[0].cells[i]
         cell.text = ""
         p = cell.paragraphs[0]
+        p.paragraph_format.space_before = Pt(0)
+        p.paragraph_format.space_after = Pt(0)
+        p.paragraph_format.line_spacing = 1.0
         run = p.add_run(header)
         run.bold = True
         run.font.color.rgb = RGBColor(255, 255, 255)
-        run.font.size = Pt(10)
+        run.font.size = Pt(8.5)
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
         set_cell_shading(cell, header_color)
 
@@ -75,8 +91,11 @@ def create_styled_table(doc, headers, rows, header_color="1B4F72"):
             cell = table.rows[row_idx + 1].cells[col_idx]
             cell.text = ""
             p = cell.paragraphs[0]
+            p.paragraph_format.space_before = Pt(0)
+            p.paragraph_format.space_after = Pt(0)
+            p.paragraph_format.line_spacing = 1.0
             run = p.add_run(str(cell_text))
-            run.font.size = Pt(9)
+            run.font.size = Pt(8)
             if row_idx % 2 == 0:
                 set_cell_shading(cell, "EBF5FB")
 
@@ -90,9 +109,20 @@ def add_highlight_box(doc, title, content, color="FEF9E7", border_color="F39C12"
     cell = table.rows[0].cells[0]
     set_cell_shading(cell, color)
 
-    # Add border
+    # Set compact cell margins
     tc = cell._tc
     tcPr = tc.get_or_add_tcPr()
+    tcMargin = parse_xml(
+        f'<w:tcMar {nsdecls("w")}>'
+        f'<w:top w:w="30" w:type="dxa"/>'
+        f'<w:left w:w="60" w:type="dxa"/>'
+        f'<w:bottom w:w="30" w:type="dxa"/>'
+        f'<w:right w:w="60" w:type="dxa"/>'
+        f'</w:tcMar>'
+    )
+    tcPr.append(tcMargin)
+
+    # Add border
     tcBorders = parse_xml(
         f'<w:tcBorders {nsdecls("w")}>'
         f'<w:top w:val="single" w:sz="12" w:color="{border_color}"/>'
@@ -105,22 +135,29 @@ def add_highlight_box(doc, title, content, color="FEF9E7", border_color="F39C12"
 
     cell.text = ""
     p = cell.paragraphs[0]
+    p.paragraph_format.space_before = Pt(0)
+    p.paragraph_format.space_after = Pt(1)
+    p.paragraph_format.line_spacing = 1.0
     run = p.add_run(f"  {title}")
     run.bold = True
-    run.font.size = Pt(11)
+    run.font.size = Pt(9.5)
     run.font.color.rgb = RGBColor(0x8B, 0x45, 0x13)
 
     if isinstance(content, list):
         for item in content:
             p = cell.add_paragraph()
+            p.paragraph_format.space_before = Pt(0)
+            p.paragraph_format.space_after = Pt(0)
+            p.paragraph_format.line_spacing = 1.0
             run = p.add_run(f"  {item}")
-            run.font.size = Pt(10)
+            run.font.size = Pt(8.5)
     else:
         p = cell.add_paragraph()
+        p.paragraph_format.space_before = Pt(0)
+        p.paragraph_format.space_after = Pt(0)
+        p.paragraph_format.line_spacing = 1.0
         run = p.add_run(f"  {content}")
-        run.font.size = Pt(10)
-
-    doc.add_paragraph()
+        run.font.size = Pt(8.5)
 
 
 def add_section_divider(doc, color="1B4F72"):
@@ -129,6 +166,9 @@ def add_section_divider(doc, color="1B4F72"):
     table.alignment = WD_TABLE_ALIGNMENT.CENTER
     cell = table.rows[0].cells[0]
     cell.text = ""
+    p = cell.paragraphs[0]
+    p.paragraph_format.space_before = Pt(0)
+    p.paragraph_format.space_after = Pt(0)
     tc = cell._tc
     tcPr = tc.get_or_add_tcPr()
     tcBorders = parse_xml(
@@ -137,7 +177,6 @@ def add_section_divider(doc, color="1B4F72"):
         f'</w:tcBorders>'
     )
     tcPr.append(tcBorders)
-    doc.add_paragraph()
 
 
 def add_heading_styled(doc, text, level=1):
@@ -146,13 +185,13 @@ def add_heading_styled(doc, text, level=1):
     for run in heading.runs:
         if level == 1:
             run.font.color.rgb = RGBColor(0x1B, 0x4F, 0x72)
-            run.font.size = Pt(22)
+            run.font.size = Pt(18)
         elif level == 2:
             run.font.color.rgb = RGBColor(0x15, 0x4F, 0x0B)
-            run.font.size = Pt(16)
+            run.font.size = Pt(14)
         elif level == 3:
             run.font.color.rgb = RGBColor(0x6C, 0x3A, 0x83)
-            run.font.size = Pt(13)
+            run.font.size = Pt(11)
     return heading
 
 
@@ -164,12 +203,12 @@ def add_bullet_points(doc, items, bold_prefix=False):
             parts = item.split(':', 1)
             run = p.add_run(parts[0] + ':')
             run.bold = True
-            run.font.size = Pt(10)
+            run.font.size = Pt(9)
             run = p.add_run(parts[1])
-            run.font.size = Pt(10)
+            run.font.size = Pt(9)
         else:
             run = p.add_run(item)
-            run.font.size = Pt(10)
+            run.font.size = Pt(9)
 
 
 def add_numbered_list(doc, items):
@@ -177,14 +216,14 @@ def add_numbered_list(doc, items):
     for i, item in enumerate(items, 1):
         p = doc.add_paragraph(style='List Number')
         run = p.add_run(item)
-        run.font.size = Pt(10)
+        run.font.size = Pt(9)
 
 
 def add_body_text(doc, text, bold=False, italic=False):
     """Add body text with formatting."""
     p = doc.add_paragraph()
     run = p.add_run(text)
-    run.font.size = Pt(10.5)
+    run.font.size = Pt(9.5)
     run.bold = bold
     run.italic = italic
     return p
@@ -193,7 +232,7 @@ def add_body_text(doc, text, bold=False, italic=False):
 def create_title_page(doc):
     """Create an attractive title page."""
     # Add spacing
-    for _ in range(3):
+    for _ in range(2):
         doc.add_paragraph()
 
     # Title
@@ -201,41 +240,35 @@ def create_title_page(doc):
     title.alignment = WD_ALIGN_PARAGRAPH.CENTER
     run = title.add_run("THE TISSUES")
     run.bold = True
-    run.font.size = Pt(36)
+    run.font.size = Pt(30)
     run.font.color.rgb = RGBColor(0x1B, 0x4F, 0x72)
 
     # Subtitle
     subtitle = doc.add_paragraph()
     subtitle.alignment = WD_ALIGN_PARAGRAPH.CENTER
     run = subtitle.add_run("Human Anatomy & Physiology")
-    run.font.size = Pt(20)
+    run.font.size = Pt(18)
     run.font.color.rgb = RGBColor(0x2E, 0x86, 0xC1)
     run.italic = True
-
-    doc.add_paragraph()
 
     # Info box
     info = doc.add_paragraph()
     info.alignment = WD_ALIGN_PARAGRAPH.CENTER
     run = info.add_run("Comprehensive Study Notes for Exam Preparation")
-    run.font.size = Pt(14)
+    run.font.size = Pt(12)
     run.font.color.rgb = RGBColor(0x6C, 0x3A, 0x83)
-
-    doc.add_paragraph()
 
     sources = doc.add_paragraph()
     sources.alignment = WD_ALIGN_PARAGRAPH.CENTER
     run = sources.add_run("Sources: Guyton & Hall | Tortora | Ross & Wilson | Sembulingam | Junqueira")
-    run.font.size = Pt(11)
+    run.font.size = Pt(10)
     run.italic = True
     run.font.color.rgb = RGBColor(0x56, 0x6D, 0x7E)
-
-    doc.add_paragraph()
 
     exams = doc.add_paragraph()
     exams.alignment = WD_ALIGN_PARAGRAPH.CENTER
     run = exams.add_run("For: NEET | AIIMS | JIPMER | GPAT | USMLE | University Exams")
-    run.font.size = Pt(11)
+    run.font.size = Pt(10)
     run.font.color.rgb = RGBColor(0x78, 0x28, 0x1F)
     run.bold = True
 
@@ -252,7 +285,6 @@ def add_introduction(doc):
                   "substance that perform a specific function. The study of tissues forms the "
                   "foundation of understanding organ structure and function.")
 
-    doc.add_paragraph()
     add_heading_styled(doc, "Definition & Importance", 2)
     add_bullet_points(doc, [
         "Tissue (Latin: texere = to weave): A group of cells similar in structure and function",
@@ -262,7 +294,6 @@ def add_introduction(doc):
         "Structural hierarchy: Chemical level > Cellular level > Tissue level > Organ level > System level > Organism"
     ], bold_prefix=True)
 
-    doc.add_paragraph()
     add_heading_styled(doc, "Classification of Tissues", 2)
     add_body_text(doc, "Based on structure and function, tissues are classified into FOUR primary types:")
 
@@ -275,7 +306,6 @@ def add_introduction(doc):
             ["Nervous", "Ectoderm (neuroectoderm)", "Communication & Control", "Electrical excitability"],
         ])
 
-    doc.add_paragraph()
     add_highlight_box(doc, "MNEMONIC: 'ECMN' - Every Cell Must Navigate",
                      "Epithelial, Connective, Muscular, Nervous - the four primary tissue types")
 
@@ -304,7 +334,6 @@ def add_epithelial_tissue(doc):
         "Surface specializations: Microvilli, cilia, stereocilia on apical surface"
     ], bold_prefix=True)
 
-    doc.add_paragraph()
     add_highlight_box(doc, "HIGH YIELD: Basement Membrane",
                      ["Composed of: Basal lamina + Reticular lamina",
                       "Basal lamina = Lamina lucida (clear) + Lamina densa (dark)",
@@ -314,7 +343,6 @@ def add_epithelial_tissue(doc):
                      color="E8F8F5", border_color="1ABC9C")
 
     # Classification
-    doc.add_paragraph()
     add_heading_styled(doc, "1.2 Classification of Epithelial Tissue", 2)
     add_body_text(doc, "Classification is based on: (A) Number of cell layers, and (B) Shape of cells at the free surface.")
 
@@ -332,8 +360,6 @@ def add_epithelial_tissue(doc):
         "Columnar: Column-shaped cells (taller than wide)",
         "Transitional: Changeable shape (dome-shaped when relaxed, flat when stretched)"
     ], bold_prefix=True)
-
-    doc.add_paragraph()
 
     # Detailed types table
     add_heading_styled(doc, "1.3 Types of Simple Epithelium", 2)
@@ -359,7 +385,6 @@ def add_epithelial_tissue(doc):
         ],
         header_color="1A5276")
 
-    doc.add_paragraph()
     add_highlight_box(doc, "IMPORTANT: Special Epithelia Names",
                      ["Endothelium: Simple squamous epithelium lining blood vessels, lymphatics, heart",
                       "Mesothelium: Simple squamous epithelium lining body cavities (pleural, peritoneal, pericardial)",
@@ -395,7 +420,6 @@ def add_epithelial_tissue(doc):
         ],
         header_color="6C3483")
 
-    doc.add_paragraph()
     add_highlight_box(doc, "CLINICAL CORRELATION: Metaplasia",
                      ["Metaplasia = Reversible change from one epithelial type to another",
                       "Example: Smokers - Pseudostratified ciliated columnar of trachea changes to stratified squamous",
@@ -405,7 +429,6 @@ def add_epithelial_tissue(doc):
                      color="F9EBEA", border_color="CB4335")
 
     # Cell Junctions
-    doc.add_paragraph()
     add_heading_styled(doc, "1.5 Cell Junctions (Intercellular Junctions)", 2)
 
     add_body_text(doc, "Cell junctions are specialized structures that connect epithelial cells "
@@ -432,7 +455,6 @@ def add_epithelial_tissue(doc):
         ],
         header_color="1E8449")
 
-    doc.add_paragraph()
     add_highlight_box(doc, "CLINICAL: Diseases of Cell Junctions",
                      ["Pemphigus vulgaris: Autoantibodies against desmogleins (desmosomes) - skin blisters",
                       "Bullous pemphigoid: Autoantibodies against hemidesmosomes - subepidermal blisters",
@@ -464,7 +486,6 @@ def add_epithelial_tissue(doc):
         ],
         header_color="2C3E50")
 
-    doc.add_paragraph()
     add_highlight_box(doc, "HIGH YIELD: Ciliary Defects",
                      ["Kartagener syndrome (Primary Ciliary Dyskinesia):",
                       "  - Defect in dynein arms of cilia",
@@ -474,7 +495,6 @@ def add_epithelial_tissue(doc):
                      color="E8F8F5", border_color="16A085")
 
     # Glandular Epithelium
-    doc.add_paragraph()
     add_heading_styled(doc, "1.7 Glandular Epithelium", 2)
 
     add_body_text(doc, "Glands are formed by infolding of epithelial cells. A gland is one or more "
@@ -499,7 +519,6 @@ def add_epithelial_tissue(doc):
         ],
         header_color="7D3C98")
 
-    doc.add_paragraph()
     add_highlight_box(doc, "MNEMONIC: Mode of Secretion - 'MAH'",
                      ["Merocrine - Most glands (exocytosis, cell intact)",
                       "Apocrine - Apex lost (mammary, some sweat glands)",
@@ -530,7 +549,6 @@ def add_connective_tissue(doc):
     ], bold_prefix=True)
 
     # Components
-    doc.add_paragraph()
     add_heading_styled(doc, "2.2 Components of Connective Tissue", 2)
 
     add_heading_styled(doc, "A. Cells of Connective Tissue", 3)
@@ -555,7 +573,6 @@ def add_connective_tissue(doc):
         ],
         header_color="1A5276")
 
-    doc.add_paragraph()
     add_highlight_box(doc, "MONONUCLEAR PHAGOCYTE SYSTEM (MPS)",
                      ["Previously called Reticuloendothelial System (RES)",
                       "All derived from monocytes:",
@@ -569,8 +586,6 @@ def add_connective_tissue(doc):
                       "  Kidney: Mesangial cells",
                       "  Lymph node: Sinus histiocytes"],
                      color="F4ECF7", border_color="8E44AD")
-
-    doc.add_paragraph()
 
     add_heading_styled(doc, "B. Fibers of Connective Tissue", 3)
 
@@ -592,7 +607,6 @@ def add_connective_tissue(doc):
         ],
         header_color="154360")
 
-    doc.add_paragraph()
     add_highlight_box(doc, "CLINICAL: Collagen & Elastic Fiber Diseases",
                      ["Scurvy: Vitamin C deficiency - defective collagen synthesis (hydroxylation of proline/lysine)",
                       "Ehlers-Danlos syndrome: Defective collagen synthesis - hyperextensible skin, hypermobile joints",
@@ -619,7 +633,6 @@ def add_connective_tissue(doc):
     ], bold_prefix=True)
 
     # Classification of CT
-    doc.add_paragraph()
     add_heading_styled(doc, "2.3 Classification of Connective Tissue", 2)
 
     add_heading_styled(doc, "Overview of CT Classification:", 3)
@@ -629,7 +642,6 @@ def add_connective_tissue(doc):
         "Specialized/Supporting CT: (a) Cartilage, (b) Bone, (c) Blood"
     ])
 
-    doc.add_paragraph()
     add_heading_styled(doc, "2.4 Connective Tissue Proper", 2)
 
     create_styled_table(doc,
@@ -659,7 +671,6 @@ def add_connective_tissue(doc):
         ],
         header_color="1E8449")
 
-    doc.add_paragraph()
     add_highlight_box(doc, "HIGH YIELD: Adipose Tissue Facts",
                      ["White adipose (WAT): Energy storage, insulation, leptin secretion",
                       "Brown adipose (BAT): Thermogenesis via UCP-1 (uncouples oxidative phosphorylation)",
@@ -688,8 +699,6 @@ def add_connective_tissue(doc):
         "Repair: Poor regeneration capacity (except in children)"
     ], bold_prefix=True)
 
-    doc.add_paragraph()
-
     create_styled_table(doc,
         ["Type", "Matrix", "Location", "Features"],
         [
@@ -705,7 +714,6 @@ def add_connective_tissue(doc):
         ],
         header_color="7D3C98")
 
-    doc.add_paragraph()
     add_highlight_box(doc, "CLINICAL: Cartilage Disorders",
                      ["Achondroplasia: Defect in FGFR3 gene - dwarfism (most common cause)",
                       "Herniated disc: Nucleus pulposus protrudes through annulus fibrosus (fibrocartilage)",
@@ -733,8 +741,6 @@ def add_connective_tissue(doc):
         "Haversian system (Osteon): Structural unit of compact bone"
     ], bold_prefix=True)
 
-    doc.add_paragraph()
-
     create_styled_table(doc,
         ["Feature", "Compact (Dense/Cortical) Bone", "Spongy (Cancellous/Trabecular) Bone"],
         [
@@ -748,14 +754,12 @@ def add_connective_tissue(doc):
         ],
         header_color="1A5276")
 
-    doc.add_paragraph()
     add_heading_styled(doc, "Bone Formation (Ossification):", 3)
     add_numbered_list(doc, [
         "Intramembranous ossification: Direct bone formation from mesenchyme (flat bones of skull, clavicle, mandible)",
         "Endochondral ossification: Bone replaces hyaline cartilage model (most bones - long bones, vertebrae, pelvis)"
     ])
 
-    doc.add_paragraph()
     add_highlight_box(doc, "CLINICAL: Bone Disorders",
                      ["Osteoporosis: Decreased bone mass & density; fracture risk (postmenopausal women)",
                       "Osteomalacia/Rickets: Defective mineralization (Vitamin D deficiency); soft bones",
@@ -765,7 +769,6 @@ def add_connective_tissue(doc):
                      color="F9EBEA", border_color="CB4335")
 
     # Blood as CT
-    doc.add_paragraph()
     add_heading_styled(doc, "2.7 Blood (Fluid Connective Tissue)", 2)
 
     add_body_text(doc, "Blood is a specialized connective tissue with a liquid extracellular matrix "
@@ -780,7 +783,6 @@ def add_connective_tissue(doc):
         "Hematopoiesis: Formation of blood cells in bone marrow from pluripotent stem cells"
     ], bold_prefix=True)
 
-    doc.add_paragraph()
     add_highlight_box(doc, "MNEMONIC: WBC Types (Decreasing Order) - 'Never Let Monkeys Eat Bananas'",
                      ["Neutrophils (60-70%) > Lymphocytes (20-25%) > Monocytes (3-8%) > Eosinophils (2-4%) > Basophils (0.5-1%)",
                       "Alternative: 'Neutrophils Love Making Everything Better'"],
@@ -809,7 +811,6 @@ def add_muscular_tissue(doc):
     ], bold_prefix=True)
 
     # Special Terminology
-    doc.add_paragraph()
     add_heading_styled(doc, "3.2 Muscle Terminology (Unique to Muscle Tissue)", 2)
 
     create_styled_table(doc,
@@ -825,7 +826,6 @@ def add_muscular_tissue(doc):
         header_color="2C3E50")
 
     # Classification - Main Comparison Table
-    doc.add_paragraph()
     add_heading_styled(doc, "3.3 Types of Muscle Tissue - Comprehensive Comparison", 2)
 
     create_styled_table(doc,
@@ -865,7 +865,6 @@ def add_muscular_tissue(doc):
         "Sarcoplasm: Contains myofibrils, mitochondria, glycogen, myoglobin"
     ])
 
-    doc.add_paragraph()
     add_heading_styled(doc, "Sarcomere Structure (Functional Unit):", 3)
     add_body_text(doc, "The sarcomere extends from one Z-line to the next Z-line (~2.2 um at rest):")
 
@@ -880,7 +879,6 @@ def add_muscular_tissue(doc):
         ],
         header_color="6C3483")
 
-    doc.add_paragraph()
     add_highlight_box(doc, "MNEMONIC: Sliding Filament Theory",
                      ["During contraction: 'HAI' decreases (H zone, A-I junction, I band all shorten)",
                       "A band remains CONSTANT (myosin length does not change)",
@@ -891,7 +889,6 @@ def add_muscular_tissue(doc):
                      color="EBF5FB", border_color="2E86C1")
 
     # Muscle Fiber Types
-    doc.add_paragraph()
     add_heading_styled(doc, "3.5 Types of Skeletal Muscle Fibers", 2)
 
     create_styled_table(doc,
@@ -927,7 +924,6 @@ def add_muscular_tissue(doc):
         "Calcium-induced calcium release (CICR): Ca2+ entry triggers more Ca2+ release from SR"
     ], bold_prefix=True)
 
-    doc.add_paragraph()
     add_highlight_box(doc, "CLINICAL: Cardiac Muscle Pathology",
                      ["Myocardial infarction (MI): Death of cardiac muscle due to ischemia; replaced by scar tissue",
                       "Cardiac hypertrophy: Enlargement of existing fibers (not hyperplasia)",
@@ -937,7 +933,6 @@ def add_muscular_tissue(doc):
                      color="F9EBEA", border_color="CB4335")
 
     # Smooth Muscle
-    doc.add_paragraph()
     add_heading_styled(doc, "3.7 Smooth Muscle - Special Features", 2)
 
     add_bullet_points(doc, [
@@ -952,7 +947,6 @@ def add_muscular_tissue(doc):
         "Regeneration: Good capacity; can divide (hyperplasia in pregnant uterus)"
     ], bold_prefix=True)
 
-    doc.add_paragraph()
     add_highlight_box(doc, "HIGH YIELD: Smooth vs Skeletal Muscle Contraction",
                      ["Skeletal: Ca2+ binds Troponin C -> exposes actin binding site -> cross-bridge cycling",
                       "Smooth: Ca2+ binds Calmodulin -> activates MLCK -> phosphorylates myosin -> cross-bridge cycling",
@@ -984,7 +978,6 @@ def add_nervous_tissue(doc):
     ], bold_prefix=True)
 
     # Neurons
-    doc.add_paragraph()
     add_heading_styled(doc, "4.2 Neurons (Nerve Cells)", 2)
 
     add_body_text(doc, "Neurons are the structural and functional units of the nervous system. "
@@ -1008,7 +1001,6 @@ def add_nervous_tissue(doc):
         ],
         header_color="1B4F72")
 
-    doc.add_paragraph()
     add_highlight_box(doc, "HIGH YIELD: Nissl Bodies (Tigroid Bodies)",
                      ["Basophilic granules in cell body and dendrites (NOT in axon or axon hillock)",
                       "Composed of: Rough ER + Polyribosomes (active protein synthesis)",
@@ -1044,7 +1036,6 @@ def add_nervous_tissue(doc):
         ],
         header_color="6C3483")
 
-    doc.add_paragraph()
     add_heading_styled(doc, "B. Functional Classification:", 3)
 
     create_styled_table(doc,
@@ -1060,7 +1051,6 @@ def add_nervous_tissue(doc):
         header_color="1E8449")
 
     # Neuroglia
-    doc.add_paragraph()
     add_heading_styled(doc, "4.4 Neuroglia (Glial Cells)", 2)
 
     add_body_text(doc, "Neuroglia ('nerve glue') are non-neuronal cells that support, protect, and maintain "
@@ -1082,7 +1072,6 @@ def add_nervous_tissue(doc):
         ],
         header_color="1A5276")
 
-    doc.add_paragraph()
     add_heading_styled(doc, "PNS Glial Cells:", 3)
 
     create_styled_table(doc,
@@ -1095,7 +1084,6 @@ def add_nervous_tissue(doc):
         ],
         header_color="7D3C98")
 
-    doc.add_paragraph()
     add_highlight_box(doc, "CLINICAL: Demyelinating Diseases",
                      ["Multiple Sclerosis (MS): Autoimmune demyelination in CNS (oligodendrocytes destroyed)",
                       "  - Relapsing-remitting course; optic neuritis, limb weakness",
@@ -1123,7 +1111,6 @@ def add_nervous_tissue(doc):
         "Axoaxonic: Axon terminal to another axon (presynaptic inhibition/facilitation)"
     ], bold_prefix=True)
 
-    doc.add_paragraph()
     add_heading_styled(doc, "Neurotransmitters:", 3)
 
     create_styled_table(doc,
@@ -1145,7 +1132,6 @@ def add_nervous_tissue(doc):
         header_color="2C3E50")
 
     # Nerve Fiber Classification
-    doc.add_paragraph()
     add_heading_styled(doc, "4.6 Classification of Nerve Fibers", 2)
 
     create_styled_table(doc,
@@ -1160,7 +1146,6 @@ def add_nervous_tissue(doc):
         ],
         header_color="154360")
 
-    doc.add_paragraph()
     add_highlight_box(doc, "HIGH YIELD: Nerve Degeneration & Regeneration",
                      ["Wallerian degeneration: Degeneration of axon DISTAL to injury site",
                       "  - Axon + myelin break down distal to cut",
@@ -1196,7 +1181,6 @@ def add_tissue_repair(doc):
         ],
         header_color="1E8449")
 
-    doc.add_paragraph()
     add_heading_styled(doc, "5.2 Types of Tissue Repair", 2)
 
     add_heading_styled(doc, "A. Regeneration:", 3)
@@ -1215,7 +1199,6 @@ def add_tissue_repair(doc):
         "Fibroblasts deposit collagen (mainly Type I and Type III)"
     ])
 
-    doc.add_paragraph()
     add_heading_styled(doc, "5.3 Wound Healing", 2)
 
     add_heading_styled(doc, "Phases of Wound Healing:", 3)
@@ -1226,7 +1209,6 @@ def add_tissue_repair(doc):
         "Remodeling/Maturation (21 days - 1 year): Collagen reorganization, Type III replaced by Type I, wound contraction, scar maturation"
     ])
 
-    doc.add_paragraph()
     add_highlight_box(doc, "HIGH YIELD: Healing Types",
                      ["Primary intention (First intention): Clean, sutured wound; minimal scar; edges approximated",
                       "Secondary intention (Second intention): Open wound; heals from base up; granulation tissue; larger scar",
@@ -1265,7 +1247,6 @@ def add_membranes_section(doc):
         ],
         header_color="7D3C98")
 
-    doc.add_paragraph()
     add_highlight_box(doc, "REMEMBER: Serous Membrane Naming",
                      ["Pleura: Parietal pleura (chest wall) + Visceral pleura (lung surface); Pleural cavity between",
                       "Pericardium: Parietal pericardium (fibrous sac) + Visceral pericardium (epicardium); Pericardial cavity",
@@ -1285,7 +1266,6 @@ def add_mcq_section(doc):
     add_body_text(doc, "The following MCQs have been asked in various competitive examinations including "
                   "NEET, AIIMS, JIPMER, GPAT, UPPSC, APPSC, and University exams. Practice these for exam preparation.")
 
-    doc.add_paragraph()
     add_heading_styled(doc, "7.1 Epithelial Tissue MCQs", 2)
 
     mcqs_epithelial = [
@@ -1334,19 +1314,18 @@ def add_mcq_section(doc):
         p = doc.add_paragraph()
         run = p.add_run(q)
         run.bold = True
-        run.font.size = Pt(10)
+        run.font.size = Pt(9)
 
         p = doc.add_paragraph()
         run = p.add_run(options)
-        run.font.size = Pt(10)
+        run.font.size = Pt(9)
 
         p = doc.add_paragraph()
         run = p.add_run(answer)
-        run.font.size = Pt(9.5)
+        run.font.size = Pt(8.5)
         run.italic = True
         run.font.color.rgb = RGBColor(0x1E, 0x84, 0x49)
 
-        doc.add_paragraph()
 
     doc.add_page_break()
 
@@ -1400,19 +1379,18 @@ def add_mcq_section(doc):
         p = doc.add_paragraph()
         run = p.add_run(q)
         run.bold = True
-        run.font.size = Pt(10)
+        run.font.size = Pt(9)
 
         p = doc.add_paragraph()
         run = p.add_run(options)
-        run.font.size = Pt(10)
+        run.font.size = Pt(9)
 
         p = doc.add_paragraph()
         run = p.add_run(answer)
-        run.font.size = Pt(9.5)
+        run.font.size = Pt(8.5)
         run.italic = True
         run.font.color.rgb = RGBColor(0x1E, 0x84, 0x49)
 
-        doc.add_paragraph()
 
     doc.add_page_break()
 
@@ -1466,19 +1444,18 @@ def add_mcq_section(doc):
         p = doc.add_paragraph()
         run = p.add_run(q)
         run.bold = True
-        run.font.size = Pt(10)
+        run.font.size = Pt(9)
 
         p = doc.add_paragraph()
         run = p.add_run(options)
-        run.font.size = Pt(10)
+        run.font.size = Pt(9)
 
         p = doc.add_paragraph()
         run = p.add_run(answer)
-        run.font.size = Pt(9.5)
+        run.font.size = Pt(8.5)
         run.italic = True
         run.font.color.rgb = RGBColor(0x1E, 0x84, 0x49)
 
-        doc.add_paragraph()
 
     doc.add_page_break()
 
@@ -1532,19 +1509,18 @@ def add_mcq_section(doc):
         p = doc.add_paragraph()
         run = p.add_run(q)
         run.bold = True
-        run.font.size = Pt(10)
+        run.font.size = Pt(9)
 
         p = doc.add_paragraph()
         run = p.add_run(options)
-        run.font.size = Pt(10)
+        run.font.size = Pt(9)
 
         p = doc.add_paragraph()
         run = p.add_run(answer)
-        run.font.size = Pt(9.5)
+        run.font.size = Pt(8.5)
         run.italic = True
         run.font.color.rgb = RGBColor(0x1E, 0x84, 0x49)
 
-        doc.add_paragraph()
 
     doc.add_page_break()
 
@@ -1598,19 +1574,18 @@ def add_mcq_section(doc):
         p = doc.add_paragraph()
         run = p.add_run(q)
         run.bold = True
-        run.font.size = Pt(10)
+        run.font.size = Pt(9)
 
         p = doc.add_paragraph()
         run = p.add_run(options)
-        run.font.size = Pt(10)
+        run.font.size = Pt(9)
 
         p = doc.add_paragraph()
         run = p.add_run(answer)
-        run.font.size = Pt(9.5)
+        run.font.size = Pt(8.5)
         run.italic = True
         run.font.color.rgb = RGBColor(0x1E, 0x84, 0x49)
 
-        doc.add_paragraph()
 
     doc.add_page_break()
 
@@ -1647,7 +1622,6 @@ def add_quick_revision(doc):
         ],
         header_color="1B4F72")
 
-    doc.add_paragraph()
     add_heading_styled(doc, "8.2 Important Staining Reactions", 2)
 
     create_styled_table(doc,
@@ -1673,7 +1647,6 @@ def add_quick_revision(doc):
         ],
         header_color="6C3483")
 
-    doc.add_paragraph()
     add_heading_styled(doc, "8.3 Clinical Correlations Summary", 2)
 
     create_styled_table(doc,
@@ -1697,7 +1670,6 @@ def add_quick_revision(doc):
         ],
         header_color="CB4335")
 
-    doc.add_paragraph()
     add_highlight_box(doc, "MNEMONICS COMPILATION",
                      ["ECMN: Four tissue types - Epithelial, Connective, Muscular, Nervous",
                       "MAH: Modes of secretion - Merocrine, Apocrine, Holocrine",
@@ -1733,7 +1705,6 @@ def add_additional_high_yield(doc):
         ],
         header_color="1E8449")
 
-    doc.add_paragraph()
     add_highlight_box(doc, "MNEMONIC for Collagen Types",
                      ["Type I: 'Bone, Skin, Tendon' = Be Strong Together",
                       "Type II: Cartilage (Two C's = Type II Cartilage)",
@@ -1743,7 +1714,6 @@ def add_additional_high_yield(doc):
                       "Steps: Transcription > Translation > Hydroxylation (Vit C) > Glycosylation > Triple helix > Secretion > Cleavage > Cross-linking (Cu2+/Lysyl oxidase)"],
                      color="F4ECF7", border_color="8E44AD")
 
-    doc.add_paragraph()
     add_heading_styled(doc, "9.2 Comparison: Epithelium vs Connective Tissue", 2)
 
     create_styled_table(doc,
@@ -1762,7 +1732,6 @@ def add_additional_high_yield(doc):
         ],
         header_color="2C3E50")
 
-    doc.add_paragraph()
     add_heading_styled(doc, "9.3 Stem Cells in Tissues", 2)
 
     create_styled_table(doc,
@@ -1780,7 +1749,6 @@ def add_additional_high_yield(doc):
         ],
         header_color="7D3C98")
 
-    doc.add_paragraph()
     add_heading_styled(doc, "9.4 Tissue Response to Injury", 2)
 
     add_body_text(doc, "The body responds to tissue injury through inflammation and repair:")
@@ -1851,29 +1819,56 @@ def main():
     style = doc.styles['Normal']
     font = style.font
     font.name = 'Calibri'
-    font.size = Pt(11)
+    font.size = Pt(10)
+    # Set single line spacing and minimal paragraph spacing for Normal style
+    style.paragraph_format.space_before = Pt(0)
+    style.paragraph_format.space_after = Pt(2)
+    style.paragraph_format.line_spacing = 1.0
 
-    # Set margins
+    # Configure List Bullet style for compact spacing
+    if 'List Bullet' in doc.styles:
+        list_bullet_style = doc.styles['List Bullet']
+        list_bullet_style.paragraph_format.space_before = Pt(0)
+        list_bullet_style.paragraph_format.space_after = Pt(1)
+        list_bullet_style.paragraph_format.line_spacing = 1.0
+
+    # Configure List Number style for compact spacing
+    if 'List Number' in doc.styles:
+        list_number_style = doc.styles['List Number']
+        list_number_style.paragraph_format.space_before = Pt(0)
+        list_number_style.paragraph_format.space_after = Pt(1)
+        list_number_style.paragraph_format.line_spacing = 1.0
+
+    # Set page size to Legal (8.5 x 14 inches) and margins to 1.27 cm
     sections = doc.sections
     for section in sections:
-        section.top_margin = Cm(2)
-        section.bottom_margin = Cm(2)
-        section.left_margin = Cm(2.5)
-        section.right_margin = Cm(2.5)
+        section.page_width = Inches(8.5)
+        section.page_height = Inches(14)
+        section.top_margin = Cm(1.27)
+        section.bottom_margin = Cm(1.27)
+        section.left_margin = Cm(1.27)
+        section.right_margin = Cm(1.27)
 
-    # Configure heading styles
+    # Configure heading styles with compact spacing
     for i in range(1, 4):
         heading_style = doc.styles[f'Heading {i}']
         heading_style.font.name = 'Calibri'
+        heading_style.paragraph_format.line_spacing = 1.0
         if i == 1:
-            heading_style.font.size = Pt(22)
+            heading_style.font.size = Pt(18)
             heading_style.font.bold = True
+            heading_style.paragraph_format.space_before = Pt(4)
+            heading_style.paragraph_format.space_after = Pt(2)
         elif i == 2:
-            heading_style.font.size = Pt(16)
+            heading_style.font.size = Pt(14)
             heading_style.font.bold = True
+            heading_style.paragraph_format.space_before = Pt(3)
+            heading_style.paragraph_format.space_after = Pt(1)
         elif i == 3:
-            heading_style.font.size = Pt(13)
+            heading_style.font.size = Pt(11)
             heading_style.font.bold = True
+            heading_style.paragraph_format.space_before = Pt(2)
+            heading_style.paragraph_format.space_after = Pt(1)
 
     # Build document sections
     print("  Adding title page...")
