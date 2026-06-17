@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic Majlis Cards Part 2 - Lesser-Known Teachings We Underestimate</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a0033 0%, #4a0072 50%, #7b1fa2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            color: #4A148C;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header .arabic-title {
+            font-family: 'Amiri', serif;
+            font-size: 2.2em;
+            color: #6A1B9A;
+            margin-bottom: 15px;
+            direction: rtl;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .header .subtitle {
+            display: inline-block;
+            background: linear-gradient(135deg, #4A148C, #7B1FA2);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+        
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card-header {
+            padding: 25px 25px 15px;
+            position: relative;
+        }
+        
+        .card-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .card-number {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85em;
+            color: white;
+        }
+        
+        .card-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .card-arabic {
+            font-family: 'Amiri', serif;
+            font-size: 1.5em;
+            direction: rtl;
+            text-align: right;
+            padding: 15px 25px;
+            margin: 0 20px;
+            border-radius: 10px;
+            line-height: 1.8;
+        }
+        
+        .card-body {
+            padding: 20px 25px 25px;
+        }
+        
+        .card-reference {
+            font-size: 0.88em;
+            line-height: 1.6;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid;
+            font-style: italic;
+        }
+        
+        .card-reminder {
+            font-size: 0.95em;
+            line-height: 1.7;
+            color: #333;
+            padding-top: 10px;
+            border-top: 1px dashed #ddd;
+        }
+        
+        .card-reminder::before {
+            content: "\1F4A1 ";
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            color: white;
+            font-size: 0.95em;
+        }
+        
+        .footer p {
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+        
+        .footer .dua {
+            font-family: 'Amiri', serif;
+            font-size: 1.4em;
+            margin-top: 15px;
+            direction: rtl;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 10px;
+            }
+            .card {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 2px solid #ddd;
+                margin-bottom: 20px;
+            }
+            .card:hover {
+                transform: none;
+            }
+            .cards-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="arabic-title">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+        <h1>✨ Islamic Majlis Cards - Part 2 ✨</h1>
+        <p><strong>Lesser-Known Teachings We Underestimate</strong><br>
+        These are the practices and prohibitions that many Muslims overlook or don't think about in daily life. They are authentic from the Quran and Sunnah, yet commonly neglected.</p>
+        <span class="subtitle">27 Overlooked Teachings Every Muslim Should Know</span>
+    </div>
+    
+    <div class="cards-container">
+
+        <div class="card">
+            <div class="card-header" style="background: #E8EAF6;">
+                <span class="card-icon">&#x1F4A0;</span>
+                <span class="card-number" style="background: #1A237E;">1</span>
+                <h2 class="card-title" style="color: #1A237E;">Istikhara Before Every Decision</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #E8EAF640; border-color: #1A237E;">
+                    Hadith: 'If one of you is concerned about a decision, let him pray two rak'ahs of non-obligatory prayer and then say the Istikhara dua.' (Bukhari)
+                </div>
+                <div class="card-reminder">
+                    Istikhara is not just for marriage. Use it before any decision - a job, a purchase, travel, even choosing a school. It is asking Allah to choose the best for you.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #EFEBE9;">
+                <span class="card-icon">&#x1F6AA;</span>
+                <span class="card-number" style="background: #4E342E;">2</span>
+                <h2 class="card-title" style="color: #4E342E;">Adab of the Bathroom</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #EFEBE940; border-color: #4E342E;">
+                    Hadith: 'When entering the toilet, say Bismillah, Allahumma inni a'udhu bika minal khubthi wal khaba'ith. Enter with the left foot and exit with the right foot.' (Bukhari & Muslim)
+                </div>
+                <div class="card-reminder">
+                    Most people rush in without any dua. The Prophet (SAW) taught specific etiquettes: enter with left foot, exit with right, say the dua, do not face the Qiblah, and do not speak inside.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #F1F8E9;">
+                <span class="card-icon">&#x1F910;</span>
+                <span class="card-number" style="background: #33691E;">3</span>
+                <h2 class="card-title" style="color: #33691E;">Silence While Eating</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #F1F8E940; border-color: #33691E;">
+                    Hadith: The Prophet (SAW) would eat in silence and focus on his food. He (SAW) said: 'Mention the name of Allah and eat with your right hand, and eat from what is nearest to you.' (Bukhari & Muslim)
+                </div>
+                <div class="card-reminder">
+                    Talking excessively while eating is against the Sunnah. Focus on your food, chew properly, and be mindful of the blessing before you. This also prevents choking and overeating.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #E3F2FD;">
+                <span class="card-icon">&#x1F4AC;</span>
+                <span class="card-number" style="background: #0D47A1;">4</span>
+                <h2 class="card-title" style="color: #0D47A1;">Saying Jazakallahu Khairan</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #E3F2FD40; border-color: #0D47A1;">
+                    Hadith: 'Whoever has a favor done for him and says Jazak Allahu khairan has done his utmost in praising (thanking) the one who did the favor.' (Tirmidhi)
+                </div>
+                <div class="card-reminder">
+                    Instead of just saying thanks, say Jazakallahu Khairan (May Allah reward you with good). It is a dua for the person and the best form of gratitude a Muslim can express.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #FFEBEE;">
+                <span class="card-icon">&#x1F4B3;</span>
+                <span class="card-number" style="background: #B71C1C;">5</span>
+                <h2 class="card-title" style="color: #B71C1C;">Sin of Delaying Debt Payment</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #FFEBEE40; border-color: #B71C1C;">
+                    Hadith: 'Delay in payment by a rich person is injustice (zulm).' (Bukhari & Muslim) | 'The soul of the believer is held back by his debt until it is paid off.' (Tirmidhi)
+                </div>
+                <div class="card-reminder">
+                    If you owe someone money and have the means to pay, delaying it is a sin. Debts can prevent a person from entering Jannah. Pay your debts before anything else.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #FCE4EC;">
+                <span class="card-icon">&#x1F525;</span>
+                <span class="card-number" style="background: #880E4F;">6</span>
+                <h2 class="card-title" style="color: #880E4F;">Prohibition of Envy (Hasad)</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #FCE4EC40; border-color: #880E4F;">
+                    Hadith: 'Beware of envy, for envy devours good deeds just as fire devours wood.' (Abu Dawud) | 'Do not envy one another, do not hate one another, do not turn away from one another.' (Muslim)
+                </div>
+                <div class="card-reminder">
+                    Hasad is wishing that a blessing be removed from someone else. It eats your good deeds like fire eats wood. Say MashaAllah, make dua for them, and be content with Allah's decree.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #F3E5F5;">
+                <span class="card-icon">&#x1F971;</span>
+                <span class="card-number" style="background: #4A148C;">7</span>
+                <h2 class="card-title" style="color: #4A148C;">Adab of Yawning</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #F3E5F540; border-color: #4A148C;">
+                    Hadith: 'Yawning is from Shaytan. If one of you yawns, let him suppress it as much as possible, and let him not say Ha Ha (make a sound), for that is from Shaytan and Shaytan laughs at him.' (Bukhari & Muslim)
+                </div>
+                <div class="card-reminder">
+                    Cover your mouth when yawning, try to suppress it, and never make a loud sound. It is from Shaytan, and saying A'udhu billah and suppressing it is the Sunnah.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #E0F7FA;">
+                <span class="card-icon">&#x270B;</span>
+                <span class="card-number" style="background: #006064;">8</span>
+                <h2 class="card-title" style="color: #006064;">Trimming Nails Within 40 Days</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #E0F7FA40; border-color: #006064;">
+                    Hadith: Anas (RA) said: 'The Messenger of Allah (SAW) set a time limit for us for trimming the moustache, clipping the nails, plucking armpit hair, and shaving pubic hair - not to leave it for more than 40 days.' (Muslim)
+                </div>
+                <div class="card-reminder">
+                    Letting nails grow beyond 40 days is explicitly prohibited. It is part of the Fitrah (natural disposition). The Prophet (SAW) was strict about this hygiene practice.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #FFF3E0;">
+                <span class="card-icon">&#x1F6CF;</span>
+                <span class="card-number" style="background: #E65100;">9</span>
+                <h2 class="card-title" style="color: #E65100;">Prohibition of Sleeping on Stomach</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #FFF3E040; border-color: #E65100;">
+                    Hadith: 'The Prophet (SAW) passed by a man lying on his stomach and nudged him with his foot, saying: This is a way of lying that Allah dislikes.' (Abu Dawud, Tirmidhi)
+                </div>
+                <div class="card-reminder">
+                    Many people sleep face down out of habit. The Prophet (SAW) explicitly said this sleeping position is disliked by Allah. Sleep on your right side following the Sunnah.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #E8F5E9;">
+                <span class="card-icon">&#x1F4D6;</span>
+                <span class="card-number" style="background: #1B5E20;">10</span>
+                <h2 class="card-title" style="color: #1B5E20;">Reading Surah Al-Kahf on Friday</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #E8F5E940; border-color: #1B5E20;">
+                    Hadith: 'Whoever reads Surah Al-Kahf on Friday, a light will shine for him between the two Fridays.' (Al-Hakim, Bayhaqi) | 'He will be given light between the two Fridays.' (Nasai)
+                </div>
+                <div class="card-reminder">
+                    This simple weekly practice is neglected by most. Read Surah Kahf every Friday (from Maghrib Thursday to Maghrib Friday). It is a shield of light and protection from Dajjal.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #C8E6C9;">
+                <span class="card-icon">&#x1F333;</span>
+                <span class="card-number" style="background: #2E7D32;">11</span>
+                <h2 class="card-title" style="color: #2E7D32;">Istighfar as a Solution to Problems</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #C8E6C940; border-color: #2E7D32;">
+                    Quran: 'Ask forgiveness of your Lord. Indeed, He is ever a Perpetual Forgiver. He will send rain to you in abundance, give you increase in wealth and children, and provide for you gardens and rivers.' (Surah Nuh 71:10-12)
+                </div>
+                <div class="card-reminder">
+                    Istighfar is not just a dhikr. It is a solution to poverty, infertility, drought, anxiety, and hardship. Increase it daily - at minimum 100 times - and watch doors open.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #E1F5FE;">
+                <span class="card-icon">&#x1F4A7;</span>
+                <span class="card-number" style="background: #01579B;">12</span>
+                <h2 class="card-title" style="color: #01579B;">Prohibition of Wasting Water</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #E1F5FE40; border-color: #01579B;">
+                    Hadith: 'The Prophet (SAW) passed by Sa'd while he was performing wudu and said: What is this extravagance? Sa'd said: Can there be extravagance in wudu? He (SAW) said: Yes, even if you are at a flowing river.' (Ibn Majah)
+                </div>
+                <div class="card-reminder">
+                    The Prophet (SAW) made wudu with just one mudd (about 750ml) of water. Even at a river, wasting water is prohibited. Turn off the tap while soaping hands, use only what is needed.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #EDE7F6;">
+                <span class="card-icon">&#x1F91E;</span>
+                <span class="card-number" style="background: #311B92;">13</span>
+                <h2 class="card-title" style="color: #311B92;">Making Dua for Others in Their Absence</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #EDE7F640; border-color: #311B92;">
+                    Hadith: 'The supplication of a Muslim for his brother in his absence is answered. At his head is an angel appointed, and every time he makes dua for his brother with good, the angel says: Ameen, and the same for you.' (Muslim)
+                </div>
+                <div class="card-reminder">
+                    When you make dua for someone without them knowing, an angel says Ameen and makes the same dua for YOU. This is one of the fastest ways to have your own prayers answered.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #FFFDE7;">
+                <span class="card-icon">&#x1F6E4;</span>
+                <span class="card-number" style="background: #F57F17;">14</span>
+                <h2 class="card-title" style="color: #F57F17;">Rights of the Road (Removing Harm)</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #FFFDE740; border-color: #F57F17;">
+                    Hadith: 'Removing harmful things from the road is an act of charity (Sadaqah).' (Bukhari & Muslim) | 'Faith has over sixty branches, the highest is La ilaha illallah, and the lowest is removing harm from the path.' (Muslim)
+                </div>
+                <div class="card-reminder">
+                    If you see a stone, glass, trash, or anything harmful on the road, remove it. This simple act that takes seconds is counted as charity and is a branch of Iman.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #FFCDD2;">
+                <span class="card-icon">&#x1F645;</span>
+                <span class="card-number" style="background: #C62828;">15</span>
+                <h2 class="card-title" style="color: #C62828;">Not Pointing at People or Mocking</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #FFCDD240; border-color: #C62828;">
+                    Quran: 'O you who have believed, let not a people ridicule another people; perhaps they may be better than them.' (Surah Al-Hujurat 49:11) | Hadith: 'It is enough evil for a person to hold his Muslim brother in contempt.' (Muslim)
+                </div>
+                <div class="card-reminder">
+                    Pointing at someone, laughing at their appearance, mocking their speech or walk - all are forbidden. You do not know whose status is higher with Allah. Ridicule destroys brotherhood.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #ECEFF1;">
+                <span class="card-icon">&#x1F517;</span>
+                <span class="card-number" style="background: #37474F;">16</span>
+                <h2 class="card-title" style="color: #37474F;">Breaking Ties of Kinship</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #ECEFF140; border-color: #37474F;">
+                    Hadith: 'The one who severs ties of kinship will not enter Paradise.' (Bukhari & Muslim) | Quran: 'Would you then, if you were given authority, do mischief in the land, and sever your ties of kinship?' (Surah Muhammad 47:22)
+                </div>
+                <div class="card-reminder">
+                    Not speaking to relatives, ignoring family members, holding grudges against kin - these can block you from Jannah. Maintain ties even if they cut you off. Visit, call, or message them.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #D7CCC8;">
+                <span class="card-icon">&#x1FAB5;</span>
+                <span class="card-number" style="background: #795548;">17</span>
+                <h2 class="card-title" style="color: #795548;">Using the Miswak</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #D7CCC840; border-color: #795548;">
+                    Hadith: 'If it were not that I would be making things too hard for my Ummah, I would have commanded them to use the Siwak (Miswak) before every prayer.' (Bukhari & Muslim)
+                </div>
+                <div class="card-reminder">
+                    The Prophet (SAW) loved the Miswak so much he almost made it obligatory. Use it before prayers, before entering the house, when waking up, and before reciting Quran. It pleases Allah.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #FFF8E1;">
+                <span class="card-icon">&#x1F372;</span>
+                <span class="card-number" style="background: #FF6F00;">18</span>
+                <h2 class="card-title" style="color: #FF6F00;">Saying Alhamdulillah After Eating</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #FFF8E140; border-color: #FF6F00;">
+                    Hadith: 'Allah is pleased with a slave who eats something and praises Him (says Alhamdulillah) for it, or drinks something and praises Him for it.' (Muslim)
+                </div>
+                <div class="card-reminder">
+                    Most finish eating and immediately get up. Take a moment to say Alhamdulillah al-ladhi at'amani hadha wa razaqanihi min ghayri hawlin minni wa la quwwah. This simple act pleases Allah immensely.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #C5CAE9;">
+                <span class="card-icon">&#x1F303;</span>
+                <span class="card-number" style="background: #283593;">19</span>
+                <h2 class="card-title" style="color: #283593;">Adab of Sleeping (Dusting the Bed)</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #C5CAE940; border-color: #283593;">
+                    Hadith: 'When any one of you goes to bed, let him dust off his bed with the inside of his lower garment three times, for he does not know what came onto it after he left it.' (Bukhari & Muslim)
+                </div>
+                <div class="card-reminder">
+                    Before sleeping: dust your bed 3 times with the edge of your garment (say Bismillah), sleep on your right side, place your right hand under your cheek, and recite the sleeping adhkar.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #FFCDD2;">
+                <span class="card-icon">&#x26A0;</span>
+                <span class="card-number" style="background: #D32F2F;">20</span>
+                <h2 class="card-title" style="color: #D32F2F;">The Sin of Kibr (Arrogance)</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #FFCDD240; border-color: #D32F2F;">
+                    Hadith: 'No one who has an atom\'s weight of arrogance in his heart will enter Paradise.' A man said: What if he likes his clothes and shoes to look good? He (SAW) said: 'Allah is Beautiful and loves beauty. Arrogance means rejecting the truth and looking down on people.' (Muslim)
+                </div>
+                <div class="card-reminder">
+                    Kibr is not about dressing well. It is rejecting truth when it comes to you and considering yourself above others. Even an atom\'s weight blocks Jannah. Check yourself daily.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #E0F2F1;">
+                <span class="card-icon">&#x1F3AF;</span>
+                <span class="card-number" style="background: #004D40;">21</span>
+                <h2 class="card-title" style="color: #004D40;">Importance of Niyyah (Intention)</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #E0F2F140; border-color: #004D40;">
+                    Hadith: 'Actions are judged by intentions, and every person will get what they intended.' (Bukhari & Muslim - First Hadith in Sahih Bukhari)
+                </div>
+                <div class="card-reminder">
+                    Sleeping can be worship if you intend to rest for Fajr. Eating can be worship if you intend to gain strength for ibadah. Renew your intention before EVERY action - work, study, even exercise.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #EFEBE9;">
+                <span class="card-icon">&#x1F35E;</span>
+                <span class="card-number" style="background: #5D4037;">22</span>
+                <h2 class="card-title" style="color: #5D4037;">Prohibition of Wasting Food</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #EFEBE940; border-color: #5D4037;">
+                    Quran: 'Eat and drink, but do not waste. Indeed, He does not like those who waste.' (Surah Al-A'raf 7:31) | Hadith: 'If a morsel of food falls, pick it up, clean it, and eat it.' (Muslim)
+                </div>
+                <div class="card-reminder">
+                    Take only what you can finish. Do not leave food on your plate. If food falls, pick it up and eat it. The Prophet (SAW) would lick his fingers and clean the plate. Wasting food is hated by Allah.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #B3E5FC;">
+                <span class="card-icon">&#x1F4A7;</span>
+                <span class="card-number" style="background: #0277BD;">23</span>
+                <h2 class="card-title" style="color: #0277BD;">Sitting While Drinking Water</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #B3E5FC40; border-color: #0277BD;">
+                    Hadith: 'The Prophet (SAW) forbade drinking while standing.' (Muslim) | In another narration: 'Had the one who drank standing known what was in his stomach, he would have vomited.' (Ahmad)
+                </div>
+                <div class="card-reminder">
+                    Drinking while standing is against the Sunnah and medically harmful. Sit down, say Bismillah, drink in 3 sips, breathe outside the cup between sips, and say Alhamdulillah when done.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #CFD8DC;">
+                <span class="card-icon">&#x1F54B;</span>
+                <span class="card-number" style="background: #263238;">24</span>
+                <h2 class="card-title" style="color: #263238;">Attending Janazah (Funeral Prayer)</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #CFD8DC40; border-color: #263238;">
+                    Hadith: 'Whoever attends the funeral prayer will have one Qirat of reward. Whoever stays until the burial will have two Qirats. Each Qirat is like Mount Uhud.' (Bukhari & Muslim)
+                </div>
+                <div class="card-reminder">
+                    Two Qirats - each the size of Mount Uhud in reward - just for attending a funeral and burial. Yet most Muslims skip it unless it is someone very close. It is a right of the deceased upon the community.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #E8EAF6;">
+                <span class="card-icon">&#x1F442;</span>
+                <span class="card-number" style="background: #1A237E;">25</span>
+                <h2 class="card-title" style="color: #1A237E;">Being Mindful of What Enters Your Ears</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #E8EAF640; border-color: #1A237E;">
+                    Quran: 'Indeed, the hearing, the sight, and the heart - about all those one will be questioned.' (Surah Al-Isra 17:36) | 'And of the people is he who buys the amusement of speech to mislead from the way of Allah.' (Surah Luqman 31:6)
+                </div>
+                <div class="card-reminder">
+                    Your ears will testify on the Day of Judgment about what you listened to. Be intentional about what enters your ears - podcasts, conversations, background noise. Fill them with Quran and beneficial knowledge.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #F3E5F5;">
+                <span class="card-icon">&#x2696;</span>
+                <span class="card-number" style="background: #4A148C;">26</span>
+                <h2 class="card-title" style="color: #4A148C;">Being Just Even with Enemies</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #F3E5F540; border-color: #4A148C;">
+                    Quran: 'O you who have believed, be persistently standing firm for Allah as witnesses in justice, and do not let the hatred of a people prevent you from being just. Be just; that is nearer to righteousness.' (Surah Al-Ma'idah 5:8)
+                </div>
+                <div class="card-reminder">
+                    Islam demands justice even toward those who hate you. Do not lie about your enemy, do not exaggerate their faults, do not deny their rights. Justice is non-negotiable regardless of personal feelings.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #E0F7FA;">
+                <span class="card-icon">&#x1F910;</span>
+                <span class="card-number" style="background: #006064;">27</span>
+                <h2 class="card-title" style="color: #006064;">Speak Good or Remain Silent</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #E0F7FA40; border-color: #006064;">
+                    Hadith: 'Whoever believes in Allah and the Last Day, let him speak good or remain silent.' (Bukhari & Muslim)
+                </div>
+                <div class="card-reminder">
+                    Before speaking, ask: Is it true? Is it beneficial? Is it the right time? If it fails any test, stay silent. Most sins come from the tongue. Silence is safety, and good speech is rewarded.
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    <div class="footer">
+        <p><strong>May Allah help us practice these forgotten Sunnahs and avoid what He dislikes.</strong></p>
+        <p>Share with others - many Muslims are unaware of these teachings.</p>
+        <div class="dua">رَبَّنَا تَقَبَّلْ مِنَّا إِنَّكَ أَنتَ السَّمِيعُ الْعَلِيمُ</div>
+        <p style="margin-top: 15px; opacity: 0.7; font-size: 0.85em;">Prepared for Islamic Majlis | Part 2: Things We Overlook</p>
+    </div>
+</body>
+</html>
