@@ -1,30 +1,39 @@
-# AI Overview Presentation
+# Workspace
 
-This repository contains an AI Overview PowerPoint presentation covering the fundamentals of Artificial Intelligence.
+A collection of projects including presentations, study notes, and Islamic education materials.
 
-## Contents
+## Folder Structure
 
-- **AI_Overview_Presentation.pptx** - A 10-slide PowerPoint presentation covering:
-  - What is Artificial Intelligence?
-  - History of AI
-  - Types of AI (Narrow, General, Super)
-  - Key Applications (Healthcare, Finance, Transportation, etc.)
-  - Machine Learning & Deep Learning
-  - Challenges & Ethical Considerations
-  - The Future of AI
+### Presentations/
+AI Overview PowerPoint presentation covering the fundamentals of Artificial Intelligence.
+- `create_ppt.py` - Python script to generate the presentation
+- `AI_Overview_Presentation.pptx` - The generated 10-slide presentation
 
-- **create_ppt.py** - Python script used to generate the presentation using the `python-pptx` library
+### Study_Notes/
+Anatomy and physiology study notes and the scripts used to generate them.
+- `create_joints_notes.py` - Script to generate joints and sutures notes
+- `create_tissues_notes.py` - Script to generate tissues notes
+- `Joints_and_Sutures_Notes.docx` - Generated study notes on joints and sutures
+- `The_Tissues_Notes.docx` - Generated study notes on tissues
+
+### Islamic_Majlis/
+Islamic Majlis educational cards covering teachings that are often underestimated.
+- `create_majlis_cards.py` - Script to generate the first set of cards
+- `create_majlis_cards_part2.py` - Script to generate the second set of cards
+- `Islamic_Majlis_Cards.html` - First set of Islamic Majlis cards
+- `Islamic_Majlis_Cards_Part2.html` - Second set (27 lesser-known teachings)
 
 ## Requirements
 
-To regenerate the presentation, install the required dependency:
+To regenerate any of the documents, install the required dependencies:
 
 ```bash
-pip install python-pptx
+pip install python-pptx python-docx
 ```
 
-Then run:
+Then run the relevant script from within its folder, for example:
 
 ```bash
+cd Presentations
 python create_ppt.py
 ```
