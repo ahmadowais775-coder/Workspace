@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic Majlis Cards - Basic Teachings We Often Underestimate</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f3443 0%, #34e89e 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            color: #1B5E20;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header .arabic-title {
+            font-family: 'Amiri', serif;
+            font-size: 2.2em;
+            color: #2E7D32;
+            margin-bottom: 15px;
+            direction: rtl;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card-header {
+            padding: 25px 25px 15px;
+            position: relative;
+        }
+        
+        .card-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .card-number {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85em;
+            color: white;
+        }
+        
+        .card-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .card-arabic {
+            font-family: 'Amiri', serif;
+            font-size: 1.5em;
+            direction: rtl;
+            text-align: right;
+            padding: 15px 25px;
+            margin: 0 20px;
+            border-radius: 10px;
+            line-height: 1.8;
+        }
+        
+        .card-body {
+            padding: 20px 25px 25px;
+        }
+        
+        .card-reference {
+            font-size: 0.88em;
+            line-height: 1.6;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid;
+            font-style: italic;
+        }
+        
+        .card-reminder {
+            font-size: 0.95em;
+            line-height: 1.7;
+            color: #333;
+            padding-top: 10px;
+            border-top: 1px dashed #ddd;
+        }
+        
+        .card-reminder::before {
+            content: "\1F4A1 ";
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            color: white;
+            font-size: 0.95em;
+        }
+        
+        .footer p {
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+        
+        .footer .dua {
+            font-family: 'Amiri', serif;
+            font-size: 1.4em;
+            margin-top: 15px;
+            direction: rtl;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 10px;
+            }
+            .card {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 2px solid #ddd;
+                margin-bottom: 20px;
+            }
+            .card:hover {
+                transform: none;
+            }
+            .cards-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="arabic-title">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+        <h1>✨ Islamic Majlis Cards ✨</h1>
+        <p><strong>Basic Teachings We Often Underestimate</strong><br>
+        A reminder of the simple yet powerful practices from the Quran and Sunnah that we overlook in our daily lives. Let us revive these teachings and earn the pleasure of Allah (SWT).</p>
+    </div>
+    
+    <div class="cards-container">
+
+        <div class="card">
+            <div class="card-header" style="background: #E8F5E9;">
+                <span class="card-icon">&#x1F4BF;</span>
+                <span class="card-number" style="background: #1B5E20;">1</span>
+                <h2 class="card-title" style="color: #1B5E20;">Saying Bismillah</h2>
+            </div>
+        <div class="card-arabic" style="background: #E8F5E9; color: #1B5E20;">
+            بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
+        </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #E8F5E940; border-color: #1B5E20;">
+                    Hadith: The Prophet (SAW) said: 'Any matter of importance not begun with Bismillah is devoid of blessing.' (Abu Dawud)
+                </div>
+                <div class="card-reminder">
+                    Begin every action - eating, drinking, entering home, starting work - with Bismillah. It invites Allah's blessings into everything you do.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #E3F2FD;">
+                <span class="card-icon">&#x1F91D;</span>
+                <span class="card-number" style="background: #0D47A1;">2</span>
+                <h2 class="card-title" style="color: #0D47A1;">Spreading Salam</h2>
+            </div>
+        <div class="card-arabic" style="background: #E3F2FD; color: #0D47A1;">
+            السَّلامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ
+        </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #E3F2FD40; border-color: #0D47A1;">
+                    Hadith: 'You will not enter Paradise until you believe, and you will not believe until you love one another. Shall I tell you something that if you do it, you will love one another? Spread Salam among yourselves.' (Muslim)
+                </div>
+                <div class="card-reminder">
+                    Say Salam to those you know and those you don't. It is a prayer of peace and a means of building love in the Ummah.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #F3E5F5;">
+                <span class="card-icon">&#x1F3E0;</span>
+                <span class="card-number" style="background: #4A148C;">3</span>
+                <h2 class="card-title" style="color: #4A148C;">Rights of Neighbors</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #F3E5F540; border-color: #4A148C;">
+                    Quran: 'Worship Allah and associate nothing with Him, and to parents do good, and to relatives, orphans, the needy, the near neighbor, the neighbor farther away...' (Surah An-Nisa 4:36)
+                </div>
+                <div class="card-reminder">
+                    The Prophet (SAW) said Jibreel kept advising him about neighbors until he thought they would be made heirs. Check on them, share food, avoid harming them.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #FFEBEE;">
+                <span class="card-icon">&#x2696;</span>
+                <span class="card-number" style="background: #B71C1C;">4</span>
+                <h2 class="card-title" style="color: #B71C1C;">Honesty & Truthfulness</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #FFEBEE40; border-color: #B71C1C;">
+                    Hadith: 'Truthfulness leads to righteousness, and righteousness leads to Paradise. A man keeps speaking the truth until he is recorded with Allah as a truthful person (Siddiq).' (Bukhari & Muslim)
+                </div>
+                <div class="card-reminder">
+                    Avoid lies even in jest. The Prophet (SAW) never lied, even in difficult situations. Truthfulness is the foundation of a Muslim's character.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #FCE4EC;">
+                <span class="card-icon">&#x1F495;</span>
+                <span class="card-number" style="background: #880E4F;">5</span>
+                <h2 class="card-title" style="color: #880E4F;">Kindness to Parents</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #FCE4EC40; border-color: #880E4F;">
+                    Quran: 'And your Lord has decreed that you not worship except Him, and to parents, good treatment. Whether one or both of them reach old age, do not say to them "uff" and do not repel them.' (Surah Al-Isra 17:23)
+                </div>
+                <div class="card-reminder">
+                    Even a sigh of frustration (uff) towards parents is prohibited. Serve them with love, patience, and gratitude. Their pleasure is Allah's pleasure.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #FFF3E0;">
+                <span class="card-icon">&#x1F6AB;</span>
+                <span class="card-number" style="background: #E65100;">6</span>
+                <h2 class="card-title" style="color: #E65100;">Avoiding Backbiting</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #FFF3E040; border-color: #E65100;">
+                    Quran: 'Do not spy or backbite each other. Would one of you like to eat the flesh of his dead brother? You would detest it.' (Surah Al-Hujurat 49:12)
+                </div>
+                <div class="card-reminder">
+                    Backbiting (Gheebah) is mentioning something about your brother that he would dislike, even if it is true. Guard your tongue as you guard your prayers.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #FFFDE7;">
+                <span class="card-icon">&#x1F64F;</span>
+                <span class="card-number" style="background: #F57F17;">7</span>
+                <h2 class="card-title" style="color: #F57F17;">Being Grateful (Shukr)</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #FFFDE740; border-color: #F57F17;">
+                    Quran: 'If you are grateful, I will surely increase you [in favor]; but if you deny, indeed, My punishment is severe.' (Surah Ibrahim 14:7)
+                </div>
+                <div class="card-reminder">
+                    Say Alhamdulillah often. Be grateful for health, family, food, and faith. Gratitude increases blessings; ingratitude invites loss.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #E0F7FA;">
+                <span class="card-icon">&#x1F4FF;</span>
+                <span class="card-number" style="background: #006064;">8</span>
+                <h2 class="card-title" style="color: #006064;">Remembrance of Allah (Dhikr)</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #E0F7FA40; border-color: #006064;">
+                    Quran: 'Verily, in the remembrance of Allah do hearts find rest.' (Surah Ar-Ra'd 13:28)
+                </div>
+                <div class="card-reminder">
+                    Keep your tongue moist with dhikr - SubhanAllah, Alhamdulillah, Allahu Akbar, Astaghfirullah. It is light on the tongue but heavy on the scales.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #E8EAF6;">
+                <span class="card-icon">&#x1F54C;</span>
+                <span class="card-number" style="background: #1A237E;">9</span>
+                <h2 class="card-title" style="color: #1A237E;">Punctuality in Salah</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #E8EAF640; border-color: #1A237E;">
+                    Quran: 'Indeed, prayer has been decreed upon the believers a decree of specified times.' (Surah An-Nisa 4:103)
+                </div>
+                <div class="card-reminder">
+                    The first thing we will be asked about on the Day of Judgment is Salah. Pray on time, with concentration (Khushu). It is the pillar of your Deen.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #EDE7F6;">
+                <span class="card-icon">&#x1F9D8;</span>
+                <span class="card-number" style="background: #311B92;">10</span>
+                <h2 class="card-title" style="color: #311B92;">Controlling Anger</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #EDE7F640; border-color: #311B92;">
+                    Hadith: 'The strong man is not the one who can wrestle, but the strong man is the one who controls himself at the time of anger.' (Bukhari & Muslim)
+                </div>
+                <div class="card-reminder">
+                    When angry: say A'udhu billahi min ash-shaytan ir-rajeem, sit down if standing, make wudu, and remain silent. Anger is from Shaytan.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #E8F5E9;">
+                <span class="card-icon">&#x1F4B0;</span>
+                <span class="card-number" style="background: #1B5E20;">11</span>
+                <h2 class="card-title" style="color: #1B5E20;">Charity (Sadaqah)</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #E8F5E940; border-color: #1B5E20;">
+                    Hadith: 'Charity does not decrease wealth. No one forgives another except that Allah increases his honor.' (Muslim)
+                </div>
+                <div class="card-reminder">
+                    Give charity daily, even if small. A smile is charity. Removing harm from the road is charity. Even a kind word is Sadaqah.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #FFF8E1;">
+                <span class="card-icon">&#x1F31F;</span>
+                <span class="card-number" style="background: #FF6F00;">12</span>
+                <h2 class="card-title" style="color: #FF6F00;">Good Manners (Akhlaq)</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #FFF8E140; border-color: #FF6F00;">
+                    Hadith: 'The most beloved of you to me and the closest to me in position on the Day of Resurrection are those of you who are best in character.' (Tirmidhi)
+                </div>
+                <div class="card-reminder">
+                    Good character outweighs extra prayers and fasting. Be gentle, speak kindly, show mercy, and treat all people with respect.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #F1F8E9;">
+                <span class="card-icon">&#x1F37D;</span>
+                <span class="card-number" style="background: #33691E;">13</span>
+                <h2 class="card-title" style="color: #33691E;">Eating with Right Hand</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #F1F8E940; border-color: #33691E;">
+                    Hadith: 'When one of you eats, let him eat with his right hand, and when he drinks, let him drink with his right hand.' (Muslim)
+                </div>
+                <div class="card-reminder">
+                    A simple Sunnah we often neglect. Eat with the right hand, say Bismillah, eat from what is nearest to you, and do not waste food.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #E1F5FE;">
+                <span class="card-icon">&#x1F927;</span>
+                <span class="card-number" style="background: #01579B;">14</span>
+                <h2 class="card-title" style="color: #01579B;">Replying to a Sneeze</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #E1F5FE40; border-color: #01579B;">
+                    Hadith: 'When one of you sneezes and says Alhamdulillah, say to him Yarhamuk-Allah (May Allah have mercy on you).' (Bukhari)
+                </div>
+                <div class="card-reminder">
+                    Saying Alhamdulillah after sneezing and responding Yarhamuk-Allah is a forgotten Sunnah that builds bonds of mercy in our community.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #EFEBE9;">
+                <span class="card-icon">&#x1F440;</span>
+                <span class="card-number" style="background: #4E342E;">15</span>
+                <h2 class="card-title" style="color: #4E342E;">Avoiding Suspicion & Spying</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #EFEBE940; border-color: #4E342E;">
+                    Quran: 'O you who have believed, avoid much [negative] assumption. Indeed, some assumption is sin. And do not spy or backbite each other.' (Surah Al-Hujurat 49:12)
+                </div>
+                <div class="card-reminder">
+                    Do not assume the worst about your Muslim brother or sister. Give 70 excuses before judging. Protect their honor as you would protect your own.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #E0F2F1;">
+                <span class="card-icon">&#x1F932;</span>
+                <span class="card-number" style="background: #004D40;">16</span>
+                <h2 class="card-title" style="color: #004D40;">Making Dua (Supplication)</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #E0F2F140; border-color: #004D40;">
+                    Hadith: 'Dua is the essence of worship.' (Tirmidhi) | Quran: 'Call upon Me; I will respond to you.' (Surah Ghafir 40:60)
+                </div>
+                <div class="card-reminder">
+                    Never underestimate dua. Ask Allah for everything - big or small. The best times: last third of night, between Adhan and Iqamah, while prostrating.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #FFCDD2;">
+                <span class="card-icon">&#x1F3E5;</span>
+                <span class="card-number" style="background: #C62828;">17</span>
+                <h2 class="card-title" style="color: #C62828;">Visiting the Sick</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #FFCDD240; border-color: #C62828;">
+                    Hadith: 'When a Muslim visits a sick Muslim in the morning, 70,000 angels pray for him until evening, and if he visits in the evening, 70,000 angels pray for him until morning.' (Tirmidhi)
+                </div>
+                <div class="card-reminder">
+                    Visiting the sick is a right upon every Muslim. It brings immense reward and reminds us of Allah's blessings of health.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #C5CAE9;">
+                <span class="card-icon">&#x1F91D;</span>
+                <span class="card-number" style="background: #283593;">18</span>
+                <h2 class="card-title" style="color: #283593;">Keeping Promises</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #C5CAE940; border-color: #283593;">
+                    Quran: 'O you who have believed, fulfill [all] contracts.' (Surah Al-Ma'idah 5:1) | Hadith: 'The signs of a hypocrite are three: when he speaks he lies, when he promises he breaks it, when he is trusted he betrays.' (Bukhari & Muslim)
+                </div>
+                <div class="card-reminder">
+                    A Muslim's word is his bond. Do not make promises you cannot keep. Breaking promises is a sign of hypocrisy (Nifaq).
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #ECEFF1;">
+                <span class="card-icon">&#x1F441;</span>
+                <span class="card-number" style="background: #37474F;">19</span>
+                <h2 class="card-title" style="color: #37474F;">Lowering the Gaze</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #ECEFF140; border-color: #37474F;">
+                    Quran: 'Tell the believing men to lower their gaze and guard their modesty. That is purer for them.' (Surah An-Nur 24:30)
+                </div>
+                <div class="card-reminder">
+                    The first glance is forgiven, but the second is a sin. Guard your eyes in public, on screens, and in gatherings. It protects the heart.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" style="background: #E8EAF6;">
+                <span class="card-icon">&#x1F319;</span>
+                <span class="card-number" style="background: #1A237E;">20</span>
+                <h2 class="card-title" style="color: #1A237E;">Sleeping & Waking Sunnah</h2>
+            </div>
+            <div class="card-body">
+                <div class="card-reference" style="background: #E8EAF640; border-color: #1A237E;">
+                    Hadith: 'When you go to bed, perform wudu as for prayer, then lie on your right side and say: O Allah, I surrender myself to You...' (Bukhari & Muslim)
+                </div>
+                <div class="card-reminder">
+                    Sleep on your right side, recite Ayatul Kursi, the last 2 verses of Al-Baqarah, and the 3 Quls. Wake for Tahajjud if you can - it is the best prayer after Fard.
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    <div class="footer">
+        <p><strong>May Allah guide us all to act upon these teachings.</strong></p>
+        <p>Share with others - spreading knowledge is Sadaqah Jariyah (continuous charity).</p>
+        <div class="dua">اللَّهُمَّ اجْعَلْنَا مِنَ الَّذِينَ يَسْتَمِعُونَ الْقَوْلَ فَيَتَّبِعُونَ أَحْسَنَهُ</div>
+        <p style="margin-top: 15px; opacity: 0.7; font-size: 0.85em;">Prepared for Islamic Majlis | Designed with love for the Ummah</p>
+    </div>
+</body>
+</html>
