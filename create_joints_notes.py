@@ -250,7 +250,7 @@ def create_title_page(doc):
     run.font.color.rgb = RGBColor(0x78, 0x28, 0x1F)
     run.bold = True
 
-    doc.add_page_break()
+    pass  # page break removed
 
 
 def add_introduction(doc):
@@ -278,7 +278,7 @@ def add_introduction(doc):
                       "Clinical significance: Pain from joint disease may be referred to skin areas supplied by the same nerve"],
                      color="E8F8F5", border_color="1ABC9C")
 
-    doc.add_page_break()
+    pass  # page break removed
 
 
 def add_classification_of_joints(doc):
@@ -317,7 +317,7 @@ def add_classification_of_joints(doc):
                       "F=S (Fibrous=Synarthrosis), C=A (Cartilaginous=Amphiarthrosis), S=D (Synovial=Diarthrosis)"],
                      color="EBF5FB", border_color="2E86C1")
 
-    doc.add_page_break()
+    pass  # page break removed
 
 
 def add_fibrous_joints(doc):
@@ -354,7 +354,7 @@ def add_fibrous_joints(doc):
                       "Premature closure = Craniosynostosis (abnormal skull shape)"],
                      color="FDEDEC", border_color="E74C3C")
 
-    doc.add_page_break()
+    pass  # page break removed
 
 
 def add_cartilaginous_joints(doc):
@@ -396,7 +396,7 @@ def add_cartilaginous_joints(doc):
         "No disc between C1-C2 (atlas-axis) and at sacrum/coccyx"
     ], bold_prefix=True)
 
-    doc.add_page_break()
+    pass  # page break removed
 
 
 def add_synovial_joints(doc):
@@ -441,7 +441,7 @@ def add_synovial_joints(doc):
                       "Pseudogout: Weakly positively birefringent rhomboid crystals (calcium pyrophosphate)"],
                      color="FDEDEC", border_color="E74C3C")
 
-    doc.add_page_break()
+    pass  # page break removed
 
     # Types of Synovial Joints
     add_heading_styled(doc, "Types of Synovial Joints (Based on Shape of Articular Surfaces)", 2)
@@ -477,7 +477,7 @@ def add_synovial_joints(doc):
                       "Remember: 'Please Help People Cross Bridges Safely'"],
                      color="EBF5FB", border_color="2E86C1")
 
-    doc.add_page_break()
+    pass  # page break removed
 
     # Movements at Joints
     add_heading_styled(doc, "Movements at Synovial Joints", 2)
@@ -513,7 +513,7 @@ def add_synovial_joints(doc):
                       "Muscles: Supination = Biceps + Supinator; Pronation = Pronator teres + Pronator quadratus"],
                      color="FEF9E7", border_color="F39C12")
 
-    doc.add_page_break()
+    pass  # page break removed
 
     # Blood and Nerve Supply
     add_heading_styled(doc, "Blood Supply and Nerve Supply of Joints", 2)
@@ -543,7 +543,7 @@ def add_synovial_joints(doc):
                       "Temporomandibular joint - pain may be felt in ear (auriculotemporal nerve)"],
                      color="F9EBEA", border_color="CB4335")
 
-    doc.add_page_break()
+    pass  # page break removed
 
 
 def add_specific_joints(doc):
@@ -612,7 +612,7 @@ def add_specific_joints(doc):
                       "Unhappy/Terrible Triad: ACL + MCL + Medial Meniscus tear"],
                      color="E8F8F5", border_color="1ABC9C")
 
-    doc.add_page_break()
+    pass  # page break removed
 
     # Elbow Joint
     add_heading_styled(doc, "4. Elbow Joint", 2)
@@ -665,7 +665,7 @@ def add_specific_joints(doc):
                       "Most commonly SPRAINED: Ankle (lateral ligaments - inversion)"],
                      color="FEF9E7", border_color="F39C12")
 
-    doc.add_page_break()
+    pass  # page break removed
 
 
 def add_sutures_section(doc):
@@ -696,7 +696,7 @@ def add_sutures_section(doc):
         ],
         header_color="1A5276")
 
-    doc.add_page_break()
+    pass  # page break removed
 
     # Major Sutures
     add_heading_styled(doc, "Major Sutures of the Skull", 2)
@@ -735,7 +735,7 @@ def add_sutures_section(doc):
                       "METOPIC = METa (forehead) + opis (between frontal halves)"],
                      color="EBF5FB", border_color="2E86C1")
 
-    doc.add_page_break()
+    pass  # page break removed
 
     # Fontanelles
     add_heading_styled(doc, "Fontanelles (Soft Spots)", 2)
@@ -776,7 +776,7 @@ def add_sutures_section(doc):
                       "Delayed closure: Hypothyroidism, Rickets, Hydrocephalus, Down syndrome, Achondroplasia"],
                      color="FDEDEC", border_color="E74C3C")
 
-    doc.add_page_break()
+    pass  # page break removed
 
     # Ossification Timeline
     add_heading_styled(doc, "Ossification Timeline of Sutures", 2)
@@ -818,7 +818,7 @@ def add_sutures_section(doc):
                       "Treatment: Surgical correction (craniotomy/cranial vault remodeling) - best before 1 year"],
                      color="F4ECF7", border_color="8E44AD")
 
-    doc.add_page_break()
+    pass  # page break removed
 
     # Wormian Bones & Additional Points
     add_heading_styled(doc, "Wormian (Sutural) Bones", 2)
@@ -859,11 +859,27 @@ def add_sutures_section(doc):
         ],
         header_color="154360")
 
-    doc.add_page_break()
+    pass  # page break removed
 
 
 def add_mcq_section(doc):
-    """Add Previous Year MCQs section with 50+ questions."""
+    """Add Previous Year MCQs section with 50+ questions in two-column layout."""
+    # Add a new section with two columns for MCQs
+    from docx.enum.section import WD_ORIENT
+    new_section = doc.add_section()
+    new_section.page_width = Inches(8.5)
+    new_section.page_height = Inches(14)
+    new_section.top_margin = Cm(1.27)
+    new_section.bottom_margin = Cm(1.27)
+    new_section.left_margin = Cm(1.27)
+    new_section.right_margin = Cm(1.27)
+    # Set two columns
+    sectPr = new_section._sectPr
+    cols = sectPr.makeelement(qn('w:cols'), {})
+    cols.set(qn('w:num'), '2')
+    cols.set(qn('w:space'), '360')
+    sectPr.append(cols)
+
     add_heading_styled(doc, "PREVIOUS YEAR MCQs (NEET/AIIMS/JIPMER/GPAT)", 1)
     add_section_divider(doc)
 
@@ -1188,9 +1204,20 @@ def add_mcq_section(doc):
 
         # Add page break every 10 questions
         if (i + 1) % 10 == 0 and i < len(mcqs) - 1:
-            doc.add_page_break()
+            pass  # page break removed
 
-    doc.add_page_break()
+    # Revert to single column for the next section
+    new_section = doc.add_section()
+    new_section.page_width = Inches(8.5)
+    new_section.page_height = Inches(14)
+    new_section.top_margin = Cm(1.27)
+    new_section.bottom_margin = Cm(1.27)
+    new_section.left_margin = Cm(1.27)
+    new_section.right_margin = Cm(1.27)
+    sectPr = new_section._sectPr
+    cols = sectPr.makeelement(qn('w:cols'), {})
+    cols.set(qn('w:num'), '1')
+    sectPr.append(cols)
 
 
 def add_quick_revision(doc):
